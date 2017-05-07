@@ -1,0 +1,44 @@
+<div class="wrap">
+<div class="container">
+
+<form action="new_movie" method="get">
+<div class="header clearfix">
+  <div class="form-group">
+    <h1 class="header_title">MOVIE POSTER ARCHIEVING</h1>
+    <h5 class="header_subtitle">write your own movie</h5>
+    </div>
+    <div class="writing clearfix">
+    <input type="text" class="form-control" id="title" name="title" placeholder="영화 제목을 적어주세요.">
+    <button type="submit" class="btn_top btn-primary">POST</button>
+     </div>
+     </div>
+</form>
+</div>
+<hr class="line">
+
+<div class="contents">
+    <% @movie_list.each do |movie| %>
+    <section class="movie_content clearfix">
+        <div class="whole">
+        <div class="poster_image"><%= image_tg(movie.poster) %></div>
+        <div class="poster_content"> 
+        <form action="edit" method="get">
+        <ul class="poster_sebu">
+            <li>Title:  <%= movie.title %></li>
+            <li>Genre: <input type="text" name="genre" value="<%= movie.genre %>" class="form-control" id="genre"></li>
+            <li>Director: <input type="text" name="director" value="<%= movie.director %>" class="form-control" id="director"></li>
+        </ul>
+           <textarea name="id" style="display:none"><%= movie.id %></textarea>
+            <button type="submit" class="btn_edit btn-primary">Edit</button>
+        </form>
+        <form action="delete" method="get">
+            <textarea name="id" style="display:none"><%= movie.id %></textarea>
+        <button type="submit" class="btn_delete btn-primary">Delete</button>
+        </form>
+        </div>
+        </div>
+    </section>
+    <%end%>
+    
+</div>
+</div>
